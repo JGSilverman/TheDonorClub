@@ -1,0 +1,84 @@
+<div class="container-fluid p-0 hero">
+  <div class="container hero-text">
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="display-6">Register your NPO with The Donor Club</h3>
+          </div>
+          <div class="card-body">
+            <tabset [justified]=true #createNPOTabs>
+              <tab heading="1. About You" id="tab1" active="!userLoggedIn" [disabled]="userLoggedIn">
+                <app-register-for-org (moveToNextTab)="moveToNextTab($event)"></app-register-for-org>
+              </tab>
+              <tab heading="2. About your organization" active="userLoggedIn" [disabled]="!userLoggedIn">
+                <form [formGroup]="newOrgForm" (ngSubmit)="createOrg()">
+                  <div class="form-group mt-3">
+                    <input formControlName="name" type="text" placeholder="What is your non-profit's name?" class="form-control">
+                    <div *ngIf="newOrgForm.get('name').invalid && newOrgForm.get('name').errors && (newOrgForm.get('name').dirty || newOrgForm.get('name').touched)">
+                      <small class="text-danger"
+                             *ngIf="newOrgForm.get('name').hasError('required')">
+                        Name is required.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <textarea formControlName="description" type="text" placeholder="Describe what your NPO does." class="form-control"></textarea>
+                    <div *ngIf="newOrgForm.get('description').invalid && newOrgForm.get('description').errors && (newOrgForm.get('description').dirty || newOrgForm.get('description').touched)">
+                      <small class="text-danger"
+                             *ngIf="newOrgForm.get('description').hasError('required')">
+                        Description is required.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="npoType">Tax Id(TIN/EIN)</label>
+                    <input formControlName="taxId" type="text" placeholder="What is your TAXID(TIN/EIN) number?" (change)="onTaxIdChanged($event)" class="form-control">
+                    <div *ngIf="newOrgForm.get('taxId').invalid && newOrgForm.get('taxId').errors && (newOrgForm.get('taxId').dirty || newOrgForm.get('taxId').touched)">
+                      <small class="text-danger" *ngIf="newOrgForm.get('taxId').hasError('required')">
+                        TAX ID(TIN/EIN) number is required.
+                      </small>
+                      <small class="text-danger" *ngIf="newOrgForm.get('taxId').hasError('minlength')">
+                        TAX ID(TIN/EIN) number must be more than {{newOrgForm.get('taxId').errors.minlength.requiredLength}} characters.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input formControlName="websiteUrl" type="text" placeholder="https://yourwebsite.com" class="form-control">
+                    <div *ngIf="newOrgForm.get('websiteUrl').invalid && newOrgForm.get('websiteUrl').errors && (newOrgForm.get('websiteUrl').dirty || newOrgForm.get('websiteUrl').touched)">
+                      <small class="text-danger"
+                             *ngIf="newOrgForm.get('websiteUrl').hasError('required')">
+                        Please enter your website url.
+                      </small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="npoType">We are a...</label>
+                    <select formControlName="typeId" class="form-control" id="npoType">
+                      <option value="">Select Type</option>
+                      <option *ngFor="let type of npoTypes" [value]="type.id">{{type.name}}</option>
+                    </select>
+                    <div *ngIf="newOrgForm.get('typeId').invalid && newOrgForm.get('typeId').errors && (newOrgForm.get('typeId').dirty || newOrgForm.get('typeId').touched)">
+                      <small class="text-danger"
+                             *ngIf="newOrgForm.get('typeId').hasError('required')">
+                        Please select type.
+                      </small>
+                    </div>
+                  </div>
+                  <div *ngIf="submitErrorMessage">
+                    <small class="text-danger">
+                      {{submitErrorMessage}}
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <button id="submit-button" class="btn btn-primary btn-block" (click)="onSubmission($event)" [disabled]="newOrgForm.invalid">Register your NPO</button>
+                  </div>
+                </form>
+              </tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

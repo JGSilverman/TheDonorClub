@@ -1,0 +1,26 @@
+.hero {
+  height: 85vh;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../../assets/imgs/landing-page/pexels-helena-lopes-708440.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.hero-text {
+  padding-top: 10%;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.form-control, .form-control-lg {
+  border-radius: 0;
+}
+
+.form-select option:hover {
+  cursor: pointer !important;
+}

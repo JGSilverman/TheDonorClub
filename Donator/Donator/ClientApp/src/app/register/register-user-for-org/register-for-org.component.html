@@ -1,0 +1,68 @@
+<ng-container>
+  <form [formGroup]="joinAsOrgForm" (ngSubmit)="joinAsOrg()">
+    <div class="form-row mt-3">
+      <div class="col">
+        <input formControlName="firstName" type="text" placeholder="Enter your first name" class="form-control">
+        <div *ngIf="joinAsOrgForm.get('firstName').invalid && joinAsOrgForm.get('firstName').errors && (joinAsOrgForm.get('firstName').dirty || joinAsOrgForm.get('firstName').touched)">
+          <small class="text-danger"
+                 *ngIf="joinAsOrgForm.get('firstName').hasError('required')">
+            First name is required.
+          </small>
+        </div>
+      </div>
+      <div class="col">
+        <input formControlName="lastName" type="text" placeholder="Enter your last name" class="form-control">
+        <div *ngIf="joinAsOrgForm.get('lastName').invalid && joinAsOrgForm.get('lastName').errors && (joinAsOrgForm.get('lastName').dirty || joinAsOrgForm.get('lastName').touched)">
+          <small class="text-danger"
+                 *ngIf="joinAsOrgForm.get('lastName').hasError('required')">
+            Last name is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-3">
+      <input formControlName="jobRole" type="text" placeholder="What is your role?" class="form-control">
+      <div *ngIf="joinAsOrgForm.get('jobRole').invalid && joinAsOrgForm.get('jobRole').errors && (joinAsOrgForm.get('jobRole').dirty || joinAsOrgForm.get('jobRole').touched)">
+        <small class="text-danger"
+               *ngIf="joinAsOrgForm.get('jobRole').hasError('required')">
+          Role is required.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input formControlName="email" type="email" placeholder="Enter your email" class="form-control">
+      <div *ngIf="joinAsOrgForm.get('email').invalid && joinAsOrgForm.get('email').errors && (joinAsOrgForm.get('email').dirty || joinAsOrgForm.get('email').touched)">
+        <small class="text-danger"
+               *ngIf="joinAsOrgForm.get('email').hasError('required')">
+          Email address is required.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" placeholder="Enter your password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': joinAsOrgForm.get('password').errors && joinAsOrgForm.get('password').touched}" />
+      <div *ngIf="joinAsOrgForm.get('password').invalid && joinAsOrgForm.get('password').errors && (joinAsOrgForm.get('password').dirty || joinAsOrgForm.get('password').touched)">
+        <small class="text-danger" *ngIf="joinAsOrgForm.get('password').hasError('required')">
+          Password is required.
+        </small>
+        <small class="text-danger" *ngIf="joinAsOrgForm.get('password').hasError('minlength')">
+          Password must be more than {{joinAsOrgForm.get('toDo').errors.minlength.requiredLength}} characters.
+        </small>
+        <small class="text-danger" *ngIf="joinAsOrgForm.get('password').hasError('hasNumber')">
+          Password must contain at least one number.
+        </small>
+        <small class="text-danger" *ngIf="joinAsOrgForm.get('password').hasError('hasCapitalCase')">
+          Password must have at least one capital letter.
+        </small>
+        <small class="text-danger" *ngIf="joinAsOrgForm.get('password').hasError('hasSpecialCharacters')">
+          Password must have at least one special character.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" [disabled]="joinAsOrgForm.invalid">Sign up</button>
+    </div>
+    <div *ngIf="errMessage != null" class="form-group alert alert-danger">
+      <span>{{errMessage}}</span>
+    </div>
+  </form>
+</ng-container>

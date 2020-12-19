@@ -1,0 +1,57 @@
+.dashboard-sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  border-right: 1px solid #dae0ec;
+  z-index: 1020;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.dashboard-sidebar-content {
+  overflow: hidden;
+  width: auto;
+  height: 100%;
+}
+
+.dashboard-content {
+  margin-left: 240px;
+  padding: 30px 50px;
+  position: relative;
+  min-height: 100%;
+}
+
+.dashboard-sidebar .nav .nav-item .nav-link {
+  padding: 6px 10px;
+  line-height: 20px;
+  text-decoration: none;
+  color: #3c4e71;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  /* -webkit-border-radius: 6px; */
+  /* border-radius: 6px; */
+}
+
+.dashboard-sidebar .nav .nav-item .nav-link:hover {
+  background: rgba(201,210,227,.5);
+  color: #1f6bff;
+  font-weight: 700;
+}
+
+.dashboard-sidebar .nav .nav-header {
+  margin: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #657eae;
+}
+

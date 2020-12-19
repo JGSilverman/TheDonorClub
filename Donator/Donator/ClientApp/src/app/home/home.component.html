@@ -1,0 +1,26 @@
+<ng-container>
+  <div class="container-fluid p-0 hero">
+    <div class="container hero-text">
+      <h1 class="display-4 text-white">
+        <span class="text-primary">Find</span>&nbsp;
+        non-profits, volunteer opportunities, and&nbsp;
+        <span class="text-primary">manage</span> donations
+      </h1>
+      <form class="mt-5 pt-5">
+        <div class="form-row">
+          <select class="form-control form-control-lg mb-3 col-3">
+            <option value="1">Volunteer Opportunities</option>
+            <option value="2">Non-Profits</option>
+          </select>
+          <select class="form-control form-control-lg mb-3 col-3">
+            <option disabled>Categories</option>
+            <option *ngFor="let type of npoTypes" [value]="type.id">{{type.name}}</option>
+          </select>
+          <input type="text" placeholder="Enter Zip Code" class="form-control form-control-lg mb-3 col-3">
+          <button class="btn btn-lg btn-primary no-radius col-3 mb-3">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+

@@ -1,0 +1,39 @@
+<ng-container>
+ <form [formGroup]="registerUserForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <input formControlName="email" type="email" placeholder="Enter your email" class="form-control">
+      <div *ngIf="registerUserForm.get('email').errors" class="invalid-feedback">
+        <div *ngIf="registerUserForm.get('email').errors.required">Email is required</div>
+        <div *ngIf="registerUserForm.get('email').errors.email">Email must be a valid email address</div>
+        <div *ngIf="registerUserForm.get('email').errors.emailTaken">This email has already been taken</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" placeholder="Enter your password" formControlName="password" class="form-control"
+        [ngClass]="{'is-invalid': registerUserForm.get('password').errors && registerUserForm.get('password').touched}">
+      <div class="invalid-feedback" *ngIf="registerUserForm.get('password').hasError('required')
+            && registerUserForm.get('password').touched">
+        Password is required.
+      </div>
+      <div class="invalid-feedback" *ngIf="registerUserForm.get('password').hasError('minlength')
+            && registerUserForm.get('password').touched">
+        Password must be more than 6 characters.
+      </div>
+      <div class="invalid-feedback" *ngIf="registerUserForm.get('password').hasError('hasNumber')
+            && registerUserForm.get('password').touched">
+        Password must contain at least one number.
+      </div>
+      <div class="invalid-feedback" *ngIf="registerUserForm.get('password').hasError('hasCapitalCase')
+            && registerUserForm.get('password').touched">
+        Password must have at least one capital letter.
+      </div>
+      <div class="invalid-feedback" *ngIf="registerUserForm.get('password').hasError('hasSpecialCharacters')
+            && registerUserForm.get('password').touched">
+        Password must have at least one special character.
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" [disabled]="!registerUserForm.valid">Sign up</button>
+    </div>
+  </form>
+</ng-container>
